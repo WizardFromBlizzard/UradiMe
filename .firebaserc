@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "uradime-26fb6": {
+      "hosting": {
+        "UradiMe": [
+          "uradime-26fb6"
+        ]
+      }
+    }
+  }
+}
