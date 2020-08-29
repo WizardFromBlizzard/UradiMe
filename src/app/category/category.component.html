@@ -1,7 +1,7 @@
 <div class="row justify-content-center md-3">
     <div class="col-md-4 text-center">
         <h2>Kategorije</h2>
-        <!-- <p class="text-info">Lorem ipsum</p> -->
+        
     </div>
 </div>
 
@@ -35,7 +35,7 @@
                 </div>
                 <div class="todo-content" [routerLink]="['/todo', kategorija.id]">
                     <h3 [style.color]='kategorija.data.boja'>{{kategorija?.data.kategorija}}</h3>
-                    <!-- <small class="text-secondary">Lorem ipsum</small> -->
+                    
                 </div>
                 <span *ngIf="kategorija.data.brojac === 1" class="badge badge-danger">{{kategorija.data.brojac}} - zadatak</span>
                 <span *ngIf="kategorija.data.brojac <= 4 && kategorija.data.brojac >= 2" class="badge badge-danger">{{kategorija.data.brojac}} - zadatka</span>
