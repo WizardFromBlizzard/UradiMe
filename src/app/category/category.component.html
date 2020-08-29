@@ -7,33 +7,38 @@
 
 <div class="row">
     <div class="col-md-12">
-        <form #form='ngForm' (ngSubmit)='onSubmit(form)' class="form-inline">
+        <form #form='ngForm' (ngSubmit)='form.form.valid && onSubmit(form)' class="form-inline">
             <div class="col-md-10 form-group">
-                <input type="text" placeholder="Dodaj novu kategoriju" name="imeKategorije" class="form-control-plaintext shadow-element" ngModel>
+                <input type="text" placeholder="Dodaj novu kategoriju" name="imeKategorije" class="form-control-plaintext shadow-element"
+                  [(ngModel)]= 'imeKategorije' required #category = 'ngModel' [ngClass]= "{'border-danger': form.submitted && category.invalid}">
             </div>
-            <button type="submit" class="btn btn-primary col-md-2 btn-todo btn-block">Dodaj</button>
+            <button type="submit" class="btn btn-primary col-md-2 btn-todo btn-block">{{dataStatus}}</button>
+            <div class="text-danger ml-3" *ngIf="form.submitted && category.invalid && category.errors.required">
+                Unesite kategoriju...
+            </div>
         </form>
     </div>
 </div>
 
 <div class="row categories-list">
-    <div class="col-md-3">
-        <div class="card shadow-element">
+    <div class="col-md-3" *ngFor="let kategorija of kategorije">
+        <div class="card shadow-element" [style.border-left-color]='kategorija.data.boja'>
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left">
                         <div class="badge badge-primary">KATEGORIJA</div>
                     </div>
                     <div class="float-right cat-tools">
-                        <small><i class="fa fa-pencil-alt text-success"></i></small>
-                        <small><i class="fa fa-trash text-danger"></i></small>
+                        <small><i class="fa fa-pencil-alt text-success" (click)='onEdit(kategorija?.data.kategorija, kategorija.id)'></i></small>
+                        <small><i class="fa fa-trash text-danger" (click)='onDelete(kategorija.id)'></i></small>
                     </div>
                 </div>
-                <div class="todo-content">
-                    <h3>Kategorija</h3>
+                <div class="todo-content" [routerLink]="['/todo', kategorija.id]">
+                    <h3 [style.color]='kategorija.data.boja'>{{kategorija?.data.kategorija}}</h3>
                     <small class="text-secondary">Lorem ipsum</small>
                 </div>
-                <span class="badge badge-danger">3</span>
+                <span *ngIf="kategorija.data.brojac <= 4" class="badge badge-danger">{{kategorija.data.brojac}} - zadatka</span>
+                <span *ngIf="kategorija.data.brojac > 4" class="badge badge-danger">{{kategorija.data.brojac}} - zadataka</span>
             </div>
         </div>
     </div>
