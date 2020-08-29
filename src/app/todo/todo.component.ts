@@ -60,4 +60,14 @@ export class TodoComponent implements OnInit {
   onDelete(idZadatka: string){
     this.todoService.deleteTodo(this.idKategorije, idZadatka);
   }
+
+  zavrsenZadatak(idZadatka: string){
+    console.log(idZadatka);
+    
+    this.todoService.markComplete(this.idKategorije, idZadatka);
+  }
+
+  nezavrsenZadatak(idZadatka: string){
+    this.todoService.markUncomplete(this.idKategorije, idZadatka);
+  }
 }

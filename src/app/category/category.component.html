@@ -37,8 +37,9 @@
                     <h3 [style.color]='kategorija.data.boja'>{{kategorija?.data.kategorija}}</h3>
                     <small class="text-secondary">Lorem ipsum</small>
                 </div>
-                <span *ngIf="kategorija.data.brojac <= 4" class="badge badge-danger">{{kategorija.data.brojac}} - zadatka</span>
-                <span *ngIf="kategorija.data.brojac > 4" class="badge badge-danger">{{kategorija.data.brojac}} - zadataka</span>
+                <span *ngIf="kategorija.data.brojac === 1" class="badge badge-danger">{{kategorija.data.brojac}} - zadatak</span>
+                <span *ngIf="kategorija.data.brojac <= 4 && kategorija.data.brojac >= 2" class="badge badge-danger">{{kategorija.data.brojac}} - zadatka</span>
+                <span *ngIf="kategorija.data.brojac > 4 || kategorija.data.brojac === 0" class="badge badge-danger">{{kategorija.data.brojac}} - zadataka</span>
             </div>
         </div>
     </div>

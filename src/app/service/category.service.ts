@@ -25,7 +25,7 @@ export class CategoryService {
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
-          console.log(a.payload);
+          
           
           const id = a.payload.doc.id;
           return {id, data}

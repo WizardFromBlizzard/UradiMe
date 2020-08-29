@@ -25,7 +25,6 @@ export class TodoService {
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
-          console.log(a.payload);
           
           const id = a.payload.doc.id;
           return {id, data}
@@ -44,6 +43,17 @@ export class TodoService {
     this.fireService.collection('kategorije').doc(idKategorije).collection('zadaci').doc(idZadatka).delete().then(()=> {
       this.fireService.doc(`kategorije/${idKategorije}`).update({brojac: firestore.FieldValue.increment(-1)});
       this.toastr.error('Zadatak je uspešno izbrisan');
+    })
+  }
+
+  markComplete(idKategorije: string, idZadatka: string){
+    this.fireService.collection('kategorije').doc(idKategorije).collection('zadaci').doc(idZadatka).update({isCompleted: true}).then(()=> {
+      this.toastr.info('Zadatak je uspešno urađen');
+    })
+  }
+  markUncomplete(idKategorije: string, idZadatka: string){
+    this.fireService.collection('kategorije').doc(idKategorije).collection('zadaci').doc(idZadatka).update({isCompleted: false}).then(()=> {
+      this.toastr.warning('Zadatak je nezavršen');
     })
   }
 }

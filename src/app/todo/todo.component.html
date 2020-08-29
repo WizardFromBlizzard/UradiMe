@@ -1,6 +1,6 @@
 <div class="row justify-content-center md-3">
     <div class="col-md-4 text-center">
-        <h1>ZADATAK</h1>
+        <h1>ZADACI</h1>
         <p class="text-info">Lorem ipsum</p>
     </div>
 </div>
@@ -26,13 +26,14 @@
             <div class="card-body">
                 <div class="clearfix">
                     <div class="float-left text-secondary">
-                        <i class="far fa-circle text-danger"></i>
-                        <i class="fas fa-check text-success"></i>
+                        <i class="far fa-circle text-danger" *ngIf="!zadatak.data.isCompleted"></i>
+                        <i class="fas fa-check text-success" *ngIf="zadatak.data.isCompleted"></i>
                         {{zadatak.data.zadatak}}
+                        <hr *ngIf="zadatak.data.isCompleted">
                     </div>
                     <div class="float-right">
-                        <i class="far fa-check-circle text-success"></i>
-                        <i class="far fa-times-circle text-danger"></i>
+                        <i class="far fa-check-circle text-success" (click)='zavrsenZadatak(zadatak.id)' *ngIf="!zadatak.data.isCompleted"></i>
+                        <i class="far fa-times-circle text-danger" (click)='nezavrsenZadatak(zadatak.id)' *ngIf="zadatak.data.isCompleted"></i>
                         <div class="todo-tools">
                             <i class="fas fa-pencil-alt text-warning" (click)='onEdit(zadatak.data.zadatak, zadatak.id)'></i>
                             <i class="fas fa-trash text-danger" (click)='onDelete(zadatak.id)'></i>
